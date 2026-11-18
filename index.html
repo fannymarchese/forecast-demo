@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Forecast de contratos | Demo GitHub</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header class="topbar"><div class="breadcrumbs">Portal financiero <span>/</span> <strong>Forecast</strong></div><div class="top-right"><span class="demo-pill">ENTORNO DEMOSTRACIÓN</span><div class="avatar">FC</div></div></header>
+<main class="content">
+ <div class="page-header"><div><div class="eyebrow">CONTROL DE PROYECCIONES</div><h1>Forecast de contratos</h1><p id="subtitle">Consulta y actualiza las proyecciones mensuales de tus contratos.</p></div><div class="date-stamp" id="todayLabel"></div></div>
+ <div class="workspace-bar"><div class="workspace-field"><label for="userSelect">Usuario de demostración</label><select id="userSelect" aria-label="Seleccionar usuario"><option>Cargando usuarios…</option></select></div><div class="role-tabs" role="group" aria-label="Vista actual"><button id="managerTab" class="role-btn active" type="button">▦ Portal Manager</button><button id="approverTab" class="role-btn" type="button">✓ Portal Aprobador</button></div><div class="workspace-hint" id="userRole">—</div><button class="secondary-btn" id="resetDemo" type="button">↻ Reiniciar demo</button></div>
+ <div id="error" class="error" hidden></div>
+ <div class="stats">
+  <div class="stat"><span id="stat1Label">Contratos asignados</span><div class="stat-main"><strong id="stat1">—</strong><i class="stat-symbol blue">▤</i></div><small id="stat1Foot">Mis contratos</small></div>
+  <div class="stat"><span id="stat2Label">Proyección del año</span><div class="stat-main"><strong id="stat2">—</strong><i class="stat-symbol green">↗</i></div><small>Millones de CLP</small></div>
+  <div class="stat"><span id="stat3Label">Mes actual</span><div class="stat-main"><strong id="stat3">—</strong><i class="stat-symbol purple">◷</i></div><small id="stat3Foot">Mes vigente</small></div>
+  <div class="stat"><span id="stat4Label">Pendientes de revisión</span><div class="stat-main"><strong id="stat4">—</strong><i class="stat-symbol amber">✎</i></div><small id="stat4Foot">Modificaciones propuestas</small></div>
+ </div>
+ <section class="panel" id="managerPanel">
+  <div class="panel-heading"><div><div class="section-title">Detalle de proyección</div><p>Montos contractuales, consumidos y proyecciones en millones de pesos chilenos (MM CLP).</p></div><div class="panel-actions"><label class="year-picker">Año <select id="yearSelect" aria-label="Año de proyección"></select></label><button class="secondary-btn" id="refreshBtn" type="button">↻ Actualizar</button><button class="primary-btn" id="saveBtn" type="button">Enviar cambios <span id="dirtyDot" class="dirty-dot" hidden></span></button></div></div>
+  <div class="toolbar"><label class="search"><span>⌕</span><input type="search" id="searchInput" placeholder="Buscar por código de contrato" aria-label="Filtrar por código de contrato"></label><div class="legend"><span><i class="legend-dot locked"></i> Histórico</span><span><i class="legend-dot editable"></i> Editable</span><span><i class="legend-dot pending"></i> Pendiente</span></div></div>
+  <div class="table-scroller"><table class="forecast-table" id="forecastTable"><thead></thead><tbody></tbody><tfoot></tfoot></table></div>
+  <div class="table-footer"><span id="tableSummary">—</span><span>Desliza horizontalmente para ver todos los meses →</span></div>
+ </section>
+ <section class="panel" id="approverPanel" hidden>
+  <div class="panel-heading"><div><div class="section-title">Revisión de modificaciones</div><p>Aprueba o rechaza cada mes por contrato. El valor vigente solo cambia al aprobar.</p></div><div class="panel-actions"><button class="secondary-btn" id="refreshReviewBtn" type="button">↻ Actualizar</button></div></div>
+  <div class="toolbar"><label class="search"><span>⌕</span><input type="search" id="reviewSearch" placeholder="Buscar por código de contrato" aria-label="Filtrar modificaciones por contrato"></label><label class="year-picker">Estado <select id="statusSelect"><option value="pending">Pendientes</option><option value="all">Todas</option><option value="approved">Aprobadas</option><option value="rejected">Rechazadas</option></select></label></div>
+  <div class="table-scroller"><table class="review-table"><thead><tr><th>Contrato</th><th>Período</th><th>Manager</th><th>Valor vigente</th><th>Propuesta</th><th>Variación</th><th>Estado</th><th>Acciones</th></tr></thead><tbody id="reviewBody"></tbody></table></div>
+  <div class="table-footer"><span id="reviewSummary">—</span><span>Montos en MM CLP</span></div>
+ </section>
+ <div class="bottom-grid"><section class="panel trend-panel"><div class="section-title">Evolución mensual</div><p id="chartHint">Proyección vigente para los contratos visibles.</p><div class="chart" id="chart"></div></section><section class="panel info-panel"><div class="section-title">Seguimiento de cambios</div><p class="info-lead">Las propuestas no modifican los valores vigentes hasta su aprobación.</p><div class="info-row"><span class="info-icon">✎</span><div><strong>Manager</strong><small>Propone y puede reemplazar una modificación pendiente.</small></div></div><div class="info-row"><span class="info-icon">✓</span><div><strong>Aprobador</strong><small>Aprueba o rechaza individualmente por mes y contrato.</small></div></div><div class="info-callout">Demostración con datos ficticios. Los cambios se guardan solo en este navegador; no se comparten con otros computadores. El selector de usuario no es autenticación real.</div></section></div>
+ <footer>FORECAST · Demo GitHub Pages · Datos y usuarios ficticios</footer>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="seed.js" defer></script><script src="app.js" defer></script>
+</body></html>
